@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Error, Login } from './pages'
+import { SharedLayout, Movies, Subscription, Users } from './pages/dashboard';
+import { ProtectedRoute } from './routes';
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path='dashboard' element={
+          <ProtectedRoute>
+            <SharedLayout />
+          </ProtectedRoute>}>
+          <Route index element={<Movies />} />
+          <Route path="subscription_plan" element={<Subscription />} />
+          <Route path="users_list" element={<Users />} />
+        </Route>
+        <Route path="/" element={<Login />} />
+        <Route path="*" element={<Error />} />
+      </Routes>
+      <Toaster position="top-right" reverseOrder={true} />
+    </BrowserRouter>
   );
 }
 
