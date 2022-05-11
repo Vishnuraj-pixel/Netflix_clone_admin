@@ -1,11 +1,9 @@
-import { useEffect, useState, useReducer } from "react";
 import Container from "../assets/styles/MoviesList";
-import Loading from "../components/Loading";
 
 import MovieFilter from "./MovieFilter";
 import Movies from "./Movies";
 
-function MovieList() {
+const MovieList = () => {
   // const [loading, setLoading] = useState(true);
   return (
     <Container>
@@ -14,6 +12,6 @@ function MovieList() {
       <Movies />
     </Container>
   );
-}
+};
 
 export default MovieList;

@@ -4,7 +4,7 @@ import Sort from "./Sort";
 import Grid from "./GridView";
 import List from "./ListView";
 
-function Movies() {
+const Movies = () => {
   return (
     <Container>
       <Sort />
@@ -12,7 +12,7 @@ function Movies() {
       <List />
     </Container>
   );
-}
+};
 
 export default Movies;
 

@@ -1,9 +1,8 @@
 import { BsFillGridFill, BsList } from "react-icons/bs";
 import Container from "../assets/styles/Sort";
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 
 function Sort() {
-  useEffect(() => {}, []);
   return (
     <Container>
       <div className="grid-1">

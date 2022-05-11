@@ -1,7 +1,7 @@
 import Header from "../assets/styles/Navbar";
 import { Logo } from "../services/constants/contants";
 
-function NavBar() {
+const NavBar = () => {
   return (
     <Header>
       <span className="logo netflix-logo">
@@ -12,6 +12,6 @@ function NavBar() {
       </div>
     </Header>
   );
-}
+};
 
 export default NavBar;

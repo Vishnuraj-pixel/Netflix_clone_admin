@@ -6,7 +6,6 @@ import { addUserToLocalStorage, getUserFromLocalStorage, removeUserFromLocalStor
 const initialState = {
     isLoading: false,
     user: getUserFromLocalStorage()
-
 };
 
 export const registerUser = createAsyncThunk(
@@ -53,6 +52,7 @@ const userSlice = createSlice({
         },
         [loginUser.fulfilled]: (state, { payload }) => {
             console.log(payload, "fullfilled");
+            console.log(state, 'statesUser')
             state.user = payload;
             toast.success("Welcome back");
             addUserToLocalStorage(payload);

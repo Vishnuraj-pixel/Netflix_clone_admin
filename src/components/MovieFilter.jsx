@@ -1,22 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import React from "react";
 import Container from "../assets/styles/MovieFilter";
 import moment from "moment";
 import { FiSearch } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
-import { getMovie } from "../features/users/movieSlice";
+import { getAllMovies } from "../features/Movies/movieSlice";
 
-function MovieFilter() {
-  const { movieList } = useSelector((store) => store.movie);
-  const [value, setValue] = useState(1);
+const MovieFilter = () => {
+  const { isLoading, movie } = useSelector((store) => store.movie);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    setValue(value + 1);
-    // if (value == 2) {
-    // dispatch(getMovie());
-    // }
-  }, []);
-
   const catagories = [
     "Action",
     "Animation",
@@ -41,6 +33,14 @@ function MovieFilter() {
       ),
     },
   ];
+
+  useEffect(() => {
+    dispatch(getAllMovies());
+    return () => {
+      dispatch(getAllMovies());
+    };
+  }, []);
+
   return (
     <Container>
       <form>
@@ -82,6 +82,6 @@ function MovieFilter() {
       </form>
     </Container>
   );
-}
+};
 
 export default MovieFilter;

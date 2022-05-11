@@ -1,4 +1,5 @@
 import { useState } from "react"
+import toast from "react-hot-toast"
 import fetchData from "../utils/useFetch"
 
 export const reducer = (state, action) => {
@@ -15,6 +16,7 @@ export const reducer = (state, action) => {
           repeatTagline: false
         }
       }
+      toast.error('Already added in tag line')
       return {
         ...state,
         repeatTagline: true

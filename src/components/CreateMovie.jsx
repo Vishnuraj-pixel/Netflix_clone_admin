@@ -1,15 +1,15 @@
-import { useEffect, useReducer, useRef, useState, useCallback } from "react";
+import { useEffect, useReducer, useState, useRef } from "react";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import Container from "../assets/styles/CreateMovie";
-import { createMovie } from "../features/users/movieSlice";
+import { createMovie } from "../features/Movies/movieSlice";
 import { reducer } from "../services/reducers/reducer";
 import Badge from "./Badge";
 
 const defaultValue = {
   name: "",
   image: [],
-  tag_line: ["Sci-fi"],
+  tag_line: [],
   release_date: "",
   abstract: "",
   youtube_link: "",
@@ -19,10 +19,10 @@ const defaultValue = {
 
 function CreateMovies() {
   const [state, dispatch] = useReducer(reducer, defaultValue);
-  const { movie, isLoading } = useSelector((store) => store.movie);
+  const { isLoading, movie } = useSelector((store) => store.movie);
   const dispatched = useDispatch();
   const [tagline, setTagline] = useState("");
-  // const [movieData, setMovieData] = useState([]);
+  const formRef = useRef();
   const {
     name,
     image,
@@ -38,7 +38,6 @@ function CreateMovies() {
     if (repeatTagline) {
       toast.error("Already added in tag line");
     }
-    console.info(movie);
   }, [isLoading]);
 
   const addTagLine = (value) => {
@@ -76,19 +75,20 @@ function CreateMovies() {
       formData.append("tag_line", tag_line);
       formData.append("youtube_link", youtube_link);
       dispatched(createMovie(formData));
+      if (movie) {
+        dispatch({
+          type: "clear_data",
+        });
+        formRef.current.reset();
+      }
     } else {
       toast.error("Please fill all fields");
     }
-
-    // dispatch({
-    //   type: "clear_data",
-    //   payload: defaultValue,
-    // });
   };
 
   return (
     <Container>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} ref={formRef}>
         <div className="form-row">
           <label htmlFor="name">movie</label>
           <input
@@ -96,14 +96,13 @@ function CreateMovies() {
             id="name"
             name="name"
             className="form-input"
-            value={name}
-            onChange={(e) =>
+            onChange={(e) => {
               dispatch({
                 type: "inputField",
                 field: "name",
                 value: e.currentTarget.value,
-              })
-            }
+              });
+            }}
           />
         </div>
         <div className="form-row">
@@ -112,15 +111,14 @@ function CreateMovies() {
             id="catagory"
             name="catagory"
             className="form-select"
-            value={catagory}
             defaultValue="selected"
-            onChange={(e) =>
+            onChange={(e) => {
               dispatch({
                 type: "inputField",
                 field: "catagory",
                 value: e.currentTarget.value,
-              })
-            }
+              });
+            }}
           >
             <option disabled value="selected">
               Select
@@ -142,13 +140,13 @@ function CreateMovies() {
             id="image"
             name="image"
             className="form-input"
-            onChange={(e) =>
+            onChange={(e) => {
               dispatch({
                 type: "inputField",
                 field: "image",
                 value: e.currentTarget.files[0],
-              })
-            }
+              });
+            }}
           />
         </div>
         <div className="form-row">
@@ -158,8 +156,9 @@ function CreateMovies() {
             id="tag_line"
             name="tag_line"
             className="form-input"
-            value={tagline}
-            onChange={(e) => setTagline(e.target.value)}
+            onChange={(e) => {
+              setTagline(e.target.value);
+            }}
           />
           <button
             type="button"
@@ -179,41 +178,37 @@ function CreateMovies() {
                   </Badge>
                 );
               }
-              return;
             })}
         </div>
         <div className="form-row">
           <label htmlFor="release_date">release date</label>
           <input
-            type="text"
+            type="date"
             id="release_date"
             name="release_date"
             className="form-input"
-            value={release_date}
-            onChange={(e) =>
+            onChange={(e) => {
               dispatch({
                 type: "inputField",
                 field: "release_date",
                 value: e.currentTarget.value,
-              })
-            }
+              });
+            }}
           />
         </div>
         <div className="form-row">
           <label htmlFor="abstract">Abstract</label>
           <textarea
-            type="text"
             id="abstract"
             name="abstract"
             className="form-textarea"
-            value={abstract}
-            onChange={(e) =>
+            onChange={(e) => {
               dispatch({
                 type: "inputField",
                 field: "abstract",
                 value: e.currentTarget.value,
-              })
-            }
+              });
+            }}
           />
         </div>
         <div className="form-row">
@@ -223,14 +218,13 @@ function CreateMovies() {
             id="youtube_link"
             name="youtube_link"
             className="form-input"
-            value={youtube_link}
-            onChange={(e) =>
+            onChange={(e) => {
               dispatch({
                 type: "inputField",
                 field: "youtube_link",
                 value: e.currentTarget.value,
-              })
-            }
+              });
+            }}
           />
         </div>
         <button
