@@ -18,3 +18,12 @@ export const getAllMovieThunk = async (url, thunkAPI) => {
     return thunkAPI.rejectWithValue(err.response.data.msg)
   }
 }
+
+export const updateMovieThunk = async (url, formData, thunkAPI) => {
+  try {
+    const res = await customFetch.post(url, formData)
+    return res.data
+  } catch (err) {
+    return thunkAPI.rejectWithValue(err.response.data.msg)
+  }
+}

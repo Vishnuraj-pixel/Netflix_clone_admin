@@ -45,6 +45,8 @@ html {
   --red-dark: #842029;
   --green-light: #d1e7dd;
   --green-dark: #0f5132;
+  --dark-gray: #a9a9a9;
+  --extra-gray: #636262;
 
   /* fonts  */
   --font-family: "Ubuntu", sans-serif;
@@ -55,6 +57,7 @@ html {
 
   --letterSpacing: 1px;
   --transition: 0.3s ease-in-out all;
+  --transition1: transform 500ms ease;
   --max-width: 1120px;
   --fixed-width: 500px;
   --fluid-width: 90vw;
@@ -72,6 +75,9 @@ html {
     0 4px 6px -2px rgba(0, 0, 0, 0.05);
   --shadow-4: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
     0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+  /* SLIDER */
+  --slider-padding: 5rem;
 }
 
 body {
@@ -198,6 +204,14 @@ hr {
   padding: 0.6rem 1rem 0.6rem 1rem;
 }
 
+.mrgRight5px {
+  margin-right: 5px;
+}
+
+.paddingRight20px {
+  margin-right: 20px;
+}
+
 .btn-red-color {
   background: transparent;
   border: none;
@@ -216,6 +230,10 @@ hr {
 
 .mg1-top {
   margin-top: 0.7rem;
+}
+
+.mg2-top {
+  margin-top: 1.5rem;
 }
 
 .mg1-bottom {

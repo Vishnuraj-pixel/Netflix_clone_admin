@@ -1,6 +1,3 @@
-import { useState } from "react"
-import toast from "react-hot-toast"
-import fetchData from "../utils/useFetch"
 
 export const reducer = (state, action) => {
   if (action.type === 'add_tag_line') {
@@ -12,14 +9,11 @@ export const reducer = (state, action) => {
         const tag_line = [...state.tag_line, action.payload]
         return {
           ...state,
-          tag_line: tag_line,
-          repeatTagline: false
+          tag_line: tag_line
         }
       }
-      toast.error('Already added in tag line')
       return {
         ...state,
-        repeatTagline: true
       }
     }
     return {
@@ -46,5 +40,8 @@ export const reducer = (state, action) => {
     return {
       ...newState
     }
+  }
+  return {
+    ...state
   }
 }

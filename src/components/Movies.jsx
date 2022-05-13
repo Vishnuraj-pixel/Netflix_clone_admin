@@ -8,8 +8,10 @@ const Movies = () => {
   return (
     <Container>
       <Sort />
-      <Grid />
-      <List />
+      <div className="movie-list">
+        <Grid />
+        {/* <List /> */}
+      </div>
     </Container>
   );
 };
@@ -18,4 +20,7 @@ export default Movies;
 
 const Container = styled.section`
   margin-top: 2rem;
+  .movie-list {
+    margin: 22px 0 22px 0;
+  }
 `;

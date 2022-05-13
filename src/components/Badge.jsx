@@ -2,17 +2,14 @@ import styled from "styled-components";
 import { AiFillCloseCircle } from "react-icons/ai";
 import React from "react";
 
-const Badges = ({ children, removeTagline }) => {
+const Badges = ({ children, remove }) => {
   if (children) {
     return (
       <Container>
         <span className="addMe">{children}</span>
         <a className="icon">
           {" "}
-          <AiFillCloseCircle
-            id="icon-close"
-            onClick={() => removeTagline(children)}
-          />
+          <AiFillCloseCircle id="icon-close" onClick={() => remove(children)} />
         </a>
       </Container>
     );

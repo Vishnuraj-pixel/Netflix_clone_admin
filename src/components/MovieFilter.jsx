@@ -7,7 +7,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllMovies } from "../features/Movies/movieSlice";
 
 const MovieFilter = () => {
-  const { isLoading, movie } = useSelector((store) => store.movie);
+  const { isLoading, movie, movieUpToDate } = useSelector(
+    (store) => store.movie
+  );
   const dispatch = useDispatch();
   const catagories = [
     "Action",
@@ -39,7 +41,7 @@ const MovieFilter = () => {
     return () => {
       dispatch(getAllMovies());
     };
-  }, []);
+  }, [movie, movieUpToDate]);
 
   return (
     <Container>

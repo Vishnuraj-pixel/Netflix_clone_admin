@@ -5,6 +5,8 @@ import Container from "../assets/styles/CreateMovie";
 import { createMovie } from "../features/Movies/movieSlice";
 import { reducer } from "../services/reducers/reducer";
 import Badge from "./Badge";
+import UpdateMovieContainer from "./UpdateMovieContainer";
+import { openUpdateMovieModal } from "../features/Movies/movieSlice";
 
 const defaultValue = {
   name: "",
@@ -13,13 +15,12 @@ const defaultValue = {
   release_date: "",
   abstract: "",
   youtube_link: "",
-  repeatTagline: false,
   formSubmitData: {},
 };
 
 function CreateMovies() {
   const [state, dispatch] = useReducer(reducer, defaultValue);
-  const { isLoading, movie } = useSelector((store) => store.movie);
+  const { isLoading, movie, movies } = useSelector((store) => store.movie);
   const dispatched = useDispatch();
   const [tagline, setTagline] = useState("");
   const formRef = useRef();
@@ -30,15 +31,13 @@ function CreateMovies() {
     release_date,
     abstract,
     youtube_link,
-    repeatTagline,
     catagory,
   } = state;
 
   useEffect(() => {
-    if (repeatTagline) {
-      toast.error("Already added in tag line");
-    }
-  }, [isLoading]);
+    handleReset();
+    formRef.current.reset();
+  }, [movie]);
 
   const addTagLine = (value) => {
     dispatch({
@@ -75,15 +74,21 @@ function CreateMovies() {
       formData.append("tag_line", tag_line);
       formData.append("youtube_link", youtube_link);
       dispatched(createMovie(formData));
-      if (movie) {
-        dispatch({
-          type: "clear_data",
-        });
-        formRef.current.reset();
-      }
     } else {
       toast.error("Please fill all fields");
     }
+  };
+
+  const handleReset = () => {
+    dispatch({
+      type: "clear_data",
+      payload: defaultValue,
+    });
+  };
+
+  const updateMovie = ({ _id, name }) => {
+    console.log(_id, "id", name, "name");
+    dispatched(openUpdateMovieModal({ _id, name }));
   };
 
   return (
@@ -173,7 +178,7 @@ function CreateMovies() {
             tag_line.map((tag, index) => {
               if (tag) {
                 return (
-                  <Badge key={`tag${index}`} removeTagline={removeTagline}>
+                  <Badge key={`tag${index}`} remove={removeTagline}>
                     {tag}
                   </Badge>
                 );
@@ -229,12 +234,26 @@ function CreateMovies() {
         </div>
         <button
           type="submit"
-          className="btn btn-red btn-lrge"
+          className="btn btn-red btn-lrge mrgRight5px"
           disabled={isLoading}
         >
-          {isLoading ? "Loading..." : "Submit"}
+          {isLoading ? "loading..." : "submit"}
+        </button>
+        <button
+          type="reset"
+          className="btn btn-red btn-lrge mrgRight5px"
+          onClick={handleReset}
+        >
+          reset
         </button>
       </form>
+      <br />
+      {movies.crewMembersNotAdded && movies.crewMembersNotAdded.length > 0 && (
+        <UpdateMovieContainer
+          moviesToBeUpdated={movies.crewMembersNotAdded}
+          updateMovie={updateMovie}
+        />
+      )}
     </Container>
   );
 }

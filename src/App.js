@@ -3,10 +3,14 @@ import { Error, Login } from './pages'
 import { SharedLayout, Movies, Subscription, Users } from './pages/dashboard';
 import { ProtectedRoute } from './routes';
 import { Toaster } from "react-hot-toast";
+import UpdateMovie from "./components/UpdateMovie";
+import { useSelector } from "react-redux";
 
 function App() {
+  const { openModalPopup, movieModalData } = useSelector((store) => store.movie);
   return (
     <BrowserRouter>
+      {openModalPopup && <UpdateMovie movieData={movieModalData} />}
       <Routes>
         <Route path='dashboard' element={
           <ProtectedRoute>
