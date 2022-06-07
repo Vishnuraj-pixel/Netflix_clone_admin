@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Container from "../assets/styles/SubscriptionList";
 import { getAllSubscription } from "../features/Subscription/subscriptionSlice";
 import Loading from "./Loading";
+import SubscribedUsersList from "./SubscribedUsersList";
 import Subscription from "./Subscription";
 
 function SubscriptionList() {
@@ -15,6 +16,7 @@ function SubscriptionList() {
   return (
     <Container>
       <Subscription />
+      <SubscribedUsersList />
     </Container>
   );
 }

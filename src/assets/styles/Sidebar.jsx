@@ -5,11 +5,10 @@ const Header = styled.nav`
   justify-content: space-between;
   align-items: center;
   height: var(--subnav-height);
-  background: var(--subnav-background);
+  background: var(--white-smoke);
   opacity: 999999;
   z-index: 1;
   padding: 0 20rem;
-  margin-top: 10px;
   .subnav-center {
     .subnav-ul {
       display: flex;
@@ -19,7 +18,7 @@ const Header = styled.nav`
         display: flex;
         align-items: center;
         padding: 2rem 0;
-        color: #fff;
+        color: var(--grey-200);
         font-weight: 700;
         padding-left: 4.5rem;
         text-transform: capitalize;
@@ -33,7 +32,7 @@ const Header = styled.nav`
         transition: var(--transition);
       }
       .active {
-        color: var(--grey-200);
+        color: var(--grey-400);
       }
     }
   }

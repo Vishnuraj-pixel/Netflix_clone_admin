@@ -1,6 +1,6 @@
 import React from "react";
 
-function Users() {
+const SubscribedUser = () => {
   return (
     <div>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum officiis,
@@ -71,6 +71,6 @@ function Users() {
       facilis.
     </div>
   );
-}
+};
 
-export default Users;
+export default SubscribedUser;

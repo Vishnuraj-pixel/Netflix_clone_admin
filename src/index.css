@@ -41,6 +41,8 @@ html {
   /* rest of the colors */
   --black: #222;
   --white: #fff;
+  --white-smoke: #f3f3f3;
+  --sonic-silver: #757575;
   --red-light: #f8d7da;
   --red-dark: #842029;
   --green-light: #d1e7dd;
@@ -54,6 +56,7 @@ html {
   --extra-small-text: 0.7em;
   --textColor: var(--grey-900);
   --borderRadius: 0.35rem;
+  --borderRadiusOnDiv: 0.65rem;
 
   --letterSpacing: 1px;
   --transition: 0.3s ease-in-out all;
@@ -288,8 +291,19 @@ hr {
   padding: 0.375rem 0.75rem;
   border-radius: var(--borderRadius);
   background: var(--backgroundColor);
-  border: 1px solid var(--grey-200);
+  border: 1px solid var(--sonic-silver);
 }
+::placeholder {
+  color: var(--sonic-silver);
+}
+
+.scrolled {
+  position: fixed;
+  top: 0.6%;
+  left: 0%;
+  width: 100%;
+}
+
 .form-input,
 .form-select,
 .btn-block {

@@ -2,8 +2,10 @@ import styled from "styled-components";
 
 const CreateMovie = styled.div`
   background: none;
-  // border: 1px solid var(--grey-200);
-  border-radius: var(--borderRadius);
+  border: 1px solid var(--grey-200);
+  background: var(--white-smoke);
+  border-top-left-radius: var(--borderRadiusOnDiv);
+  border-bottom-left-radius: var(--borderRadiusOnDiv);
   min-width: 30%;
   min-height: 400px;
   margin: var(--margin);

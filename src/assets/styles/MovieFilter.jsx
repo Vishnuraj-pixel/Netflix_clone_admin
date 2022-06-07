@@ -3,7 +3,7 @@ import styled from "styled-components";
 const Container = styled.section`
   width: 100%;
   min-height: 19%;
-  background: none;
+  background: var(--white-smoke);
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   padding: 2rem;
   .catagory {
